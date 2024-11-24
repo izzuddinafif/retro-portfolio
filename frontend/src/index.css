@@ -75,6 +75,16 @@ html {
   transform: translateY(-2px);
 }
 
+/* Hover pop animation */
+.hover-pop {
+  transition: all 0.2s ease-in-out;
+}
+
+.hover-pop:hover {
+  transform: scale(1.05);
+  color: #b4befe;
+}
+
 h1 {
   font-size: 3.5rem !important;
 }
