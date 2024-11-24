@@ -7,9 +7,9 @@ import (
 	"log"
 	"os"
 
+	"github.com/izzuddinafif/retro-portfolio/backend/models"
 	"github.com/joho/godotenv"
 	_ "github.com/lib/pq"
-	"github.com/izzuddinafif/retro-portfolio/backend/models"
 )
 
 var DB *sql.DB
@@ -50,7 +50,7 @@ func SetupDB() error {
 			date TEXT NOT NULL,
 			description TEXT NOT NULL,
 			technologies JSONB NOT NULL,
-			type TEXT NOT NULL,
+			types JSONB NOT NULL,
 			link TEXT,
 			doi TEXT,
 			links JSONB,
@@ -63,12 +63,12 @@ func SetupDB() error {
 func PopulateDB() error {
 	projects := []models.Project{
 		{
-			Title:       "Retro Portfolio",
-			Date:        "2024",
-			Description: "A retro-themed portfolio website built with React and Go, featuring a PostgreSQL backend.",
+			Title:        "Retro Portfolio",
+			Date:         "2024",
+			Description:  "A retro-themed portfolio website built with React and Go, featuring a PostgreSQL backend.",
 			Technologies: []string{"React", "TypeScript", "Go", "PostgreSQL", "Docker"},
-			Type:        "Web Development",
-			Link:        "https://github.com/izzuddinafif/retro-portfolio",
+			Types:        []string{"Web Development"}, // Update this field to match the new schema
+			Link:         "https://github.com/izzuddinafif/retro-portfolio",
 		},
 		// Add more projects as needed
 	}
@@ -79,16 +79,21 @@ func PopulateDB() error {
 			return fmt.Errorf("error marshaling technologies: %v", err)
 		}
 
+		typesJSON, err := json.Marshal(project.Types) // Update this field to match the new schema
+		if err != nil {
+			return fmt.Errorf("error marshaling types: %v", err)
+		}
+
 		linksJSON, err := json.Marshal(project.Links)
 		if err != nil {
 			return fmt.Errorf("error marshaling links: %v", err)
 		}
 
 		_, err = DB.Exec(`
-			INSERT INTO projects (title, date, description, technologies, type, link, doi, links)
+			INSERT INTO projects (title, date, description, technologies, types, link, doi, links)
 			VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
 			ON CONFLICT (id) DO NOTHING`,
-			project.Title, project.Date, project.Description, techJSON, project.Type,
+			project.Title, project.Date, project.Description, techJSON, typesJSON, // Update this field to match the new schema
 			project.Link, project.DOI, linksJSON)
 
 		if err != nil {

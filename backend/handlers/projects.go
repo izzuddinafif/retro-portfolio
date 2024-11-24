@@ -12,7 +12,7 @@ import (
 
 func GetProjects(c *gin.Context) {
 	rows, err := db.DB.Query(`
-		SELECT id, title, date, description, technologies, type, link, doi, links, created_at
+		SELECT id, title, date, description, technologies, types, link, doi, links, created_at
 		FROM projects
 		ORDER BY created_at DESC
 	`)
@@ -25,15 +25,20 @@ func GetProjects(c *gin.Context) {
 	var projects []models.Project
 	for rows.Next() {
 		var p models.Project
-		var techJSON, linksJSON []byte
-		err := rows.Scan(&p.ID, &p.Title, &p.Date, &p.Description, &techJSON, &p.Type,
-			&p.Link, &p.DOI, &linksJSON, &p.CreatedAt)
+		var techJSON, typesJSON, linksJSON []byte
+		err := rows.Scan(&p.ID, &p.Title, &p.Date, &p.Description, &techJSON, &typesJSON, &p.Link, &p.DOI, &linksJSON, &p.CreatedAt)
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 			return
 		}
 
 		err = json.Unmarshal(techJSON, &p.Technologies)
+		if err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+			return
+		}
+
+		err = json.Unmarshal(typesJSON, &p.Types)
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 			return
@@ -62,12 +67,11 @@ func GetProject(c *gin.Context) {
 	}
 
 	var p models.Project
-	var techJSON, linksJSON []byte
+	var techJSON, typesJSON, linksJSON []byte
 	err = db.DB.QueryRow(`
-		SELECT id, title, date, description, technologies, type, link, doi, links, created_at
+		SELECT id, title, date, description, technologies, types, link, doi, links, created_at
 		FROM projects WHERE id = $1`,
-		projectID).Scan(&p.ID, &p.Title, &p.Date, &p.Description, &techJSON, &p.Type,
-		&p.Link, &p.DOI, &linksJSON, &p.CreatedAt)
+		projectID).Scan(&p.ID, &p.Title, &p.Date, &p.Description, &techJSON, &typesJSON, &p.Link, &p.DOI, &linksJSON, &p.CreatedAt)
 
 	if err != nil {
 		c.JSON(http.StatusNotFound, gin.H{"error": "Project not found"})
@@ -75,6 +79,12 @@ func GetProject(c *gin.Context) {
 	}
 
 	err = json.Unmarshal(techJSON, &p.Technologies)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+
+	err = json.Unmarshal(typesJSON, &p.Types)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
