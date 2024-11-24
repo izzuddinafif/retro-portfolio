@@ -188,17 +188,17 @@ export default function Projects() {
                       </span>
                     ))}
                   </div>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-col gap-2">
                     {(project.link || project.links?.go || project.links?.python || project.links?.overthewire || project.links?.hackthebox) && (
-                      <div className="flex flex-wrap gap-2">
+                      <div className="flex flex-col gap-2 w-full">
                         {project.link && (
                           <a
                             href={project.link}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-accent hover:text-accentLight transition-colors inline-flex items-center text-xs sm:text-base"
+                            className="text-accent hover:text-accentLight transition-all duration-300 inline-flex items-center group text-sm sm:text-base"
                           >
-                            View {project.title} <Github className="w-3 h-3 sm:w-4 sm:h-4 ml-1" />
+                            View {project.title} <Github className="w-3.5 h-3.5 sm:w-4 sm:h-4 ml-1 sm:ml-1.5 transition-transform group-hover:translate-x-0.5" />
                           </a>
                         )}
                         {project.links?.go && (
@@ -206,9 +206,9 @@ export default function Projects() {
                             href={project.links.go}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-accent hover:text-accentLight transition-colors inline-flex items-center text-xs sm:text-base"
+                            className="text-accent hover:text-accentLight transition-all duration-300 inline-flex items-center group text-sm sm:text-base"
                           >
-                            View {project.title} (Go) <Github className="w-3 h-3 sm:w-4 sm:h-4 ml-1" />
+                            View {project.title} (Go) <Github className="w-3.5 h-3.5 sm:w-4 sm:h-4 ml-1 sm:ml-1.5 transition-transform group-hover:translate-x-0.5" />
                           </a>
                         )}
                         {project.links?.python && (
@@ -216,9 +216,9 @@ export default function Projects() {
                             href={project.links.python}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-accent hover:text-accentLight transition-colors inline-flex items-center text-xs sm:text-base"
+                            className="text-accent hover:text-accentLight transition-all duration-300 inline-flex items-center group text-sm sm:text-base"
                           >
-                            View {project.title} (Python) <Github className="w-3 h-3 sm:w-4 sm:h-4 ml-1" />
+                            View {project.title} (Python) <Github className="w-3.5 h-3.5 sm:w-4 sm:h-4 ml-1 sm:ml-1.5 transition-transform group-hover:translate-x-0.5" />
                           </a>
                         )}
                         {project.links?.overthewire && (
@@ -226,9 +226,9 @@ export default function Projects() {
                             href={project.links.overthewire}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-accent hover:text-accentLight transition-colors inline-flex items-center text-xs sm:text-base"
+                            className="text-accent hover:text-accentLight transition-all duration-300 inline-flex items-center group text-sm sm:text-base"
                           >
-                            View {project.title} <Github className="w-3 h-3 sm:w-4 sm:h-4 ml-1" />
+                            View {project.title} <Github className="w-3.5 h-3.5 sm:w-4 sm:h-4 ml-1 sm:ml-1.5 transition-transform group-hover:translate-x-0.5" />
                           </a>
                         )}
                         {project.links?.hackthebox && (
@@ -236,9 +236,9 @@ export default function Projects() {
                             href={project.links.hackthebox}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-accent hover:text-accentLight transition-colors inline-flex items-center text-xs sm:text-base"
+                            className="text-accent hover:text-accentLight transition-all duration-300 inline-flex items-center group text-sm sm:text-base"
                           >
-                            View {project.title} <Github className="w-3 h-3 sm:w-4 sm:h-4 ml-1" />
+                            View {project.title} <Github className="w-3.5 h-3.5 sm:w-4 sm:h-4 ml-1 sm:ml-1.5 transition-transform group-hover:translate-x-0.5" />
                           </a>
                         )}
                       </div>
@@ -248,9 +248,9 @@ export default function Projects() {
                         href={`https://doi.org/${project.doi}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-accent hover:text-accentLight transition-colors inline-flex items-center text-xs sm:text-base"
+                        className="text-accent hover:text-accentLight transition-all duration-300 inline-flex items-center group text-sm sm:text-base"
                       >
-                        View {project.title} <Book className="w-3 h-3 sm:w-4 sm:h-4 ml-1" />
+                        View {project.title} <Book className="w-3.5 h-3.5 sm:w-4 sm:h-4 ml-1 sm:ml-1.5 transition-transform group-hover:translate-x-0.5" />
                       </a>
                     )}
                   </div>
