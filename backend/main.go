@@ -28,6 +28,7 @@ type Project struct {
 	Date         string    `json:"date"`
 	Description  string    `json:"description"`
 	Technologies []string  `json:"technologies"`
+	Types        []string  `json:"types"`
 	Type         string    `json:"type"`
 	Link         string    `json:"link,omitempty"`
 	DOI          string    `json:"doi,omitempty"`
@@ -93,7 +94,7 @@ func main() {
 
 func getProjects(c *gin.Context) {
 	rows, err := db.Query(`
-		SELECT id, title, date, description, technologies::text, type, link, doi, links::text, created_at 
+		SELECT id, title, date, description, technologies::text, types::text, link, doi, links::text, created_at 
 		FROM projects 
 		ORDER BY created_at DESC
 	`)
@@ -106,8 +107,8 @@ func getProjects(c *gin.Context) {
 	var projects []Project
 	for rows.Next() {
 		var p Project
-		var techJSON, linksJSON string
-		err := rows.Scan(&p.ID, &p.Title, &p.Date, &p.Description, &techJSON, &p.Type, &p.Link, &p.DOI, &linksJSON, &p.CreatedAt)
+		var techJSON, typesJSON, linksJSON string
+		err := rows.Scan(&p.ID, &p.Title, &p.Date, &p.Description, &techJSON, &typesJSON, &p.Link, &p.DOI, &linksJSON, &p.CreatedAt)
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 			return
@@ -116,6 +117,12 @@ func getProjects(c *gin.Context) {
 		// Parse technologies JSON
 		if err := json.Unmarshal([]byte(techJSON), &p.Technologies); err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": "Error parsing technologies: " + err.Error()})
+			return
+		}
+
+		// Parse types JSON
+		if err := json.Unmarshal([]byte(typesJSON), &p.Types); err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": "Error parsing types: " + err.Error()})
 			return
 		}
 
@@ -137,13 +144,13 @@ func getProjects(c *gin.Context) {
 func getProject(c *gin.Context) {
 	id := c.Param("id")
 	var p Project
-	var techJSON, linksJSON string
+	var techJSON, typesJSON, linksJSON string
 
 	err := db.QueryRow(`
-		SELECT id, title, date, description, technologies::text, type, link, doi, links::text, created_at 
+		SELECT id, title, date, description, technologies::text, types::text, link, doi, links::text, created_at 
 		FROM projects 
 		WHERE id = $1
-	`, id).Scan(&p.ID, &p.Title, &p.Date, &p.Description, &techJSON, &p.Type, &p.Link, &p.DOI, &linksJSON, &p.CreatedAt)
+	`, id).Scan(&p.ID, &p.Title, &p.Date, &p.Description, &techJSON, &typesJSON, &p.Link, &p.DOI, &linksJSON, &p.CreatedAt)
 
 	if err == sql.ErrNoRows {
 		c.JSON(http.StatusNotFound, gin.H{"error": "Project not found"})
@@ -156,6 +163,12 @@ func getProject(c *gin.Context) {
 	// Parse technologies JSON
 	if err := json.Unmarshal([]byte(techJSON), &p.Technologies); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Error parsing technologies: " + err.Error()})
+		return
+	}
+
+	// Parse types JSON
+	if err := json.Unmarshal([]byte(typesJSON), &p.Types); err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Error parsing types: " + err.Error()})
 		return
 	}
 
@@ -189,10 +202,10 @@ func createProject(c *gin.Context) {
 	}
 
 	err = db.QueryRow(`
-		INSERT INTO projects (title, date, description, technologies, type, link, doi, links)
-		VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+		INSERT INTO projects (title, date, description, technologies, types, type, link, doi, links)
+		VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
 		RETURNING id, created_at
-	`, p.Title, p.Date, p.Description, p.Technologies, p.Type, p.Link, p.DOI, linksJSON).Scan(&p.ID, &p.CreatedAt)
+	`, p.Title, p.Date, p.Description, p.Technologies, p.Types, p.Type, p.Link, p.DOI, linksJSON).Scan(&p.ID, &p.CreatedAt)
 
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
@@ -222,9 +235,9 @@ func updateProject(c *gin.Context) {
 
 	result, err := db.Exec(`
 		UPDATE projects 
-		SET title = $1, date = $2, description = $3, technologies = $4, type = $5, link = $6, doi = $7, links = $8
-		WHERE id = $9
-	`, p.Title, p.Date, p.Description, p.Technologies, p.Type, p.Link, p.DOI, linksJSON, id)
+		SET title = $1, date = $2, description = $3, technologies = $4, types = $5, type = $6, link = $7, doi = $8, links = $9
+		WHERE id = $10
+	`, p.Title, p.Date, p.Description, p.Technologies, p.Types, p.Type, p.Link, p.DOI, linksJSON, id)
 
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
