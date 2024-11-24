@@ -2,24 +2,6 @@ import { useState, useEffect } from 'react'
 import { Github, Book } from 'lucide-react'
 import { getProjects, Project } from '../services/api'
 
-interface Project {
-  id: number;
-  title: string;
-  date: string;
-  description: string;
-  technologies: string[];
-  types: string[];
-  link?: string;
-  doi?: string;
-  links?: {
-    go?: string;
-    python?: string;
-    overthewire?: string;
-    hackthebox?: string;
-  };
-  created_at: string;
-}
-
 export default function Projects() {
   const [projects, setProjects] = useState<Project[]>([])
   const [loading, setLoading] = useState(true)
