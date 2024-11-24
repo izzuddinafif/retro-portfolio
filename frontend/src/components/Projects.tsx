@@ -2,6 +2,24 @@ import { useState, useEffect } from 'react'
 import { Github, Book } from 'lucide-react'
 import { getProjects, Project } from '../services/api'
 
+interface Project {
+  id: number;
+  title: string;
+  date: string;
+  description: string;
+  technologies: string[];
+  types: string[];
+  link?: string;
+  doi?: string;
+  links?: {
+    go?: string;
+    python?: string;
+    overthewire?: string;
+    hackthebox?: string;
+  };
+  created_at: string;
+}
+
 export default function Projects() {
   const [projects, setProjects] = useState<Project[]>([])
   const [loading, setLoading] = useState(true)
@@ -174,7 +192,9 @@ export default function Projects() {
               <div key={project.id} className="timeline-item">
                 <span className="text-sm text-accent mb-1 block">{project.date}</span>
                 <div className="bg-surfaceHover p-6 rounded-lg">
-                  <span className="text-base bg-surface px-2 py-1 rounded mb-2 inline-block">{project.type}</span>
+                  {project.types.map((type, typeIndex) => (
+                    <span key={typeIndex} className="text-base bg-surface px-2 py-1 rounded mb-2 inline-block">{type}</span>
+                  ))}
                   <h3 className="text-xl font-bold mb-2">{project.title}</h3>
                   <p className="text-base mb-4">{project.description}</p>
                   <div className="flex flex-wrap gap-2 mb-4">
