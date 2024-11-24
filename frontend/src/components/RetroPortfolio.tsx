@@ -24,6 +24,41 @@ export default function RetroPortfolio() {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
+  const projects = [
+    {
+      title: 'Design of Corrugated Road Detection System',
+      description: 'Developed a system to detect and map corrugated road conditions using LoRa technology, GPS data, and webGIS. Achieved low transmission delay and high GPS accuracy to enhance road safety.',
+      types: ['Publication'],
+      technologies: ['LoRa', 'GPS', 'webGIS'],
+      link: 'https://doi.org/10.1109/IES55876.2022.9888636',
+      icon: <Book className="w-4 h-4 ml-1.5 transition-transform group-hover:translate-x-0.5" />,
+    },
+    {
+      title: 'BitTorrent Client',
+      description: 'Built a BitTorrent client from scratch in Go as part of <a href="https://codecrafters.io/" target="_blank" rel="noopener noreferrer" className="text-accent hover:text-accentLight transition-colors">Codecrafters</a> challenge, implementing the core BitTorrent protocol. Features include peer wire protocol, piece management, and concurrent downloads.',
+      types: ['Codecrafters', 'Project'],
+      technologies: ['Go', 'BitTorrent', 'Networking'],
+      link: 'https://github.com/izzuddinafif',
+      icon: <Github className="w-4 h-4 ml-1.5 transition-transform group-hover:translate-x-0.5" />,
+    },
+    {
+      title: 'IoT Vulnerability Scanner',
+      description: 'Full-stack vulnerability scanner for IoT devices using Laravel, Go, and Python with Nmap integration.',
+      types: ['Project'],
+      technologies: ['Laravel', 'Go', 'Python', 'IoT', 'Security'],
+      link: 'https://github.com/izzuddinafif',
+      icon: <Github className="w-4 h-4 ml-1.5 transition-transform group-hover:translate-x-0.5" />,
+    },
+    {
+      title: 'Elevator Predictive Maintenance ML',
+      description: 'Machine learning model for predicting elevator maintenance needs using sensor data and Machine Learning algorithms.',
+      types: ['Project'],
+      technologies: ['Python', 'Machine Learning', 'Scikit-Learn'],
+      link: 'https://github.com/izzuddinafif',
+      icon: <Github className="w-4 h-4 ml-1.5 transition-transform group-hover:translate-x-0.5" />,
+    },
+  ]
+
   return (
     <div className="flex flex-col items-center min-h-screen w-full bg-transparent text-text font-mono">
       {/* Gradient background */}
@@ -151,128 +186,36 @@ export default function RetroPortfolio() {
           <section className="bg-surface p-8 rounded-lg mt-2">
             <h2 className="pixelated text-lg sm:text-xl mb-8 text-center">FEATURED WORKS</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Publication */}
-              <div className="bg-surfaceHover p-6 rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-accent/5 hover:-translate-y-1">
-                <span className="text-base bg-surface px-2 py-1 rounded mb-2 inline-block">Publication</span>
-                <h3 className="text-xl font-bold mb-3">Design of Corrugated Road Detection System</h3>
-                <p className="text-base mb-4">
-                  Developed a system to detect and map corrugated road conditions using LoRa technology, GPS data, and webGIS. Achieved low transmission delay and high GPS accuracy to enhance road safety.
-                </p>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {['LoRa', 'GPS', 'webGIS'].map((tech, index) => (
-                    <span key={index} className="text-base bg-surface px-2 py-1 rounded">
-                      {tech}
-                    </span>
-                  ))}
+              {projects.map((project, index) => (
+                <div key={index} className="bg-surfaceHover p-6 rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-accent/5 hover:-translate-y-1">
+                  <div className="flex flex-wrap gap-2 mb-2">
+                    {project.types.map((type, index) => (
+                      <span key={index} className="text-base bg-surface px-2 py-1 rounded inline-block">
+                        {type}
+                      </span>
+                    ))}
+                  </div>
+                  <h3 className="text-xl font-bold mb-3">{project.title}</h3>
+                  <p className="text-base mb-4">
+                    {project.description}
+                  </p>
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {project.technologies.map((tech, index) => (
+                      <span key={index} className="text-base bg-surface px-2 py-1 rounded">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-accent hover:text-accentLight transition-all duration-300 inline-flex items-center group"
+                  >
+                    View {project.title} {project.icon}
+                  </a>
                 </div>
-                <a
-                  href="https://doi.org/10.1109/IES55876.2022.9888636"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-accent hover:text-accentLight transition-all duration-300 inline-flex items-center group"
-                >
-                  View Publication <Book className="w-4 h-4 ml-1.5 transition-transform group-hover:translate-x-0.5" />
-                </a>
-              </div>
-
-              {/* BitTorrent Client */}
-              <div className="bg-surfaceHover p-6 rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-accent/5 hover:-translate-y-1">
-                <div className="flex flex-wrap gap-2 mb-2">
-                  <span className="text-base bg-surface px-2 py-1 rounded inline-block">Codecrafters</span>
-                  <span className="text-base bg-surface px-2 py-1 rounded inline-block">Project</span>
-                </div>
-                <h3 className="text-xl font-bold mb-3">BitTorrent Client</h3>
-                <p className="text-base mb-4">
-                  Built a BitTorrent client from scratch in Go as part of <a href="https://codecrafters.io/" target="_blank" rel="noopener noreferrer" className="text-accent hover:text-accentLight transition-colors">Codecrafters</a> challenge, implementing the core BitTorrent protocol. Features include peer wire protocol, piece management, and concurrent downloads.
-                </p>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {['Go', 'BitTorrent', 'Networking'].map((tech, index) => (
-                    <span key={index} className="text-base bg-surface px-2 py-1 rounded">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-                <a
-                  href="https://github.com/izzuddinafif"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-accent hover:text-accentLight transition-all duration-300 inline-flex items-center group"
-                >
-                  View Project <Github className="w-4 h-4 ml-1.5 transition-transform group-hover:translate-x-0.5" />
-                </a>
-              </div>
-
-              {/* Blockchain */}
-              {/* <div className="bg-surfaceHover p-6 rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-accent/5 hover:-translate-y-1">
-                <span className="text-base bg-surface px-2 py-1 rounded mb-2 inline-block">Project</span>
-                <h3 className="text-xl font-bold mb-3">Supply Chain Management on Blockchain</h3>
-                <p className="text-base mb-4">
-                  Developed a supply chain management system using Hyperledger Fabric. Implemented smart contracts for tracking products and managing stakeholder permissions.
-                </p>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {['Hyperledger Fabric', 'Go', 'Docker'].map((tech, index) => (
-                    <span key={index} className="text-base bg-surface px-2 py-1 rounded">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-                <a
-                  href="https://github.com/izzuddinafif"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-accent hover:text-accentLight transition-all duration-300 inline-flex items-center group"
-                >
-                  View Project <Github className="w-4 h-4 ml-1.5 transition-transform group-hover:translate-x-0.5" />
-                </a>
-              </div> */}
-
-              {/* IoT Vulnerability Scanner */}
-              <div className="bg-surfaceHover p-6 rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-accent/5 hover:-translate-y-1">
-                <span className="text-base bg-surface px-2 py-1 rounded mb-2 inline-block">Project</span>
-                <h3 className="text-xl font-bold mb-3">IoT Vulnerability Scanner</h3>
-                <p className="text-base mb-4">
-                  Full-stack vulnerability scanner for IoT devices using Laravel, Go, and Python with Nmap integration.
-                </p>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {['Laravel', 'Go', 'Python', 'IoT', 'Security'].map((tech, index) => (
-                    <span key={index} className="text-base bg-surface px-2 py-1 rounded">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-                <a
-                  href="https://github.com/izzuddinafif"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-accent hover:text-accentLight transition-all duration-300 inline-flex items-center group"
-                >
-                  View Project <Github className="w-4 h-4 ml-1.5 transition-transform group-hover:translate-x-0.5" />
-                </a>
-              </div>
-
-              {/* Predictive Maintenance */}
-              <div className="bg-surfaceHover p-6 rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-accent/5 hover:-translate-y-1">
-                <span className="text-base bg-surface px-2 py-1 rounded mb-2 inline-block">Project</span>
-                <h3 className="text-xl font-bold mb-3">Elevator Predictive Maintenance ML</h3>
-                <p className="text-base mb-4">
-                  Machine learning model for predicting elevator maintenance needs using sensor data and Machine Learning algorithms.
-                </p>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {['Python', 'Machine Learning', 'Scikit-Learn'].map((tech, index) => (
-                    <span key={index} className="text-base bg-surface px-2 py-1 rounded">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-                <a
-                  href="https://github.com/izzuddinafif"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-accent hover:text-accentLight transition-all duration-300 inline-flex items-center group"
-                >
-                  View Project <Github className="w-4 h-4 ml-1.5 transition-transform group-hover:translate-x-0.5" />
-                </a>
-              </div>
+              ))}
             </div>
 
             <div className="text-center mt-8">
