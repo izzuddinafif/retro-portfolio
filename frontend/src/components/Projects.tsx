@@ -170,7 +170,7 @@ export default function Projects() {
 
         <main>
           <div className="timeline">
-            {projects.map((project, index) => (
+            {projects.map((project, _) => (
               <div key={project.id} className="timeline-item">
                 <span className="text-sm text-accent mb-1 block">{project.date}</span>
                 <div className="bg-surfaceHover p-6 rounded-lg">
