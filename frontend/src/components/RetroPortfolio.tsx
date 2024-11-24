@@ -195,10 +195,8 @@ export default function RetroPortfolio() {
                       </span>
                     ))}
                   </div>
-                  <h3 className="text-xl font-bold mb-3">{project.title}</h3>
-                  <p className="text-base mb-4">
-                    {project.description}
-                  </p>
+                  <h3 className="text-lg font-bold mb-2">{project.title}</h3>
+                  <p className="text-sm mb-4" dangerouslySetInnerHTML={{ __html: project.description }}></p>
                   <div className="flex flex-wrap gap-2 mb-4">
                     {project.technologies.map((tech, index) => (
                       <span key={index} className="text-base bg-surface px-2 py-1 rounded">
@@ -212,7 +210,11 @@ export default function RetroPortfolio() {
                     rel="noopener noreferrer"
                     className="text-accent hover:text-accentLight transition-all duration-300 inline-flex items-center group"
                   >
-                    View {project.title} {project.icon}
+                    {project.types.includes('Publication') ? (
+                      <>View Publication {project.icon}</>
+                    ) : (
+                      <>View Project {project.icon}</>
+                    )}
                   </a>
                 </div>
               ))}
