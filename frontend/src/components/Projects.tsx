@@ -180,7 +180,7 @@ export default function Projects() {
                     ))}
                   </div>
                   <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-                  <p className="text-base mb-4">{project.description}</p>
+                  <p className="text-base mb-4" dangerouslySetInnerHTML={{ __html: project.description }}></p>
                   <div className="flex flex-wrap gap-2 mb-4">
                     {project.technologies.map((tech, techIndex) => (
                       <span key={techIndex} className="text-base bg-surface px-2 py-1 rounded">
@@ -188,26 +188,72 @@ export default function Projects() {
                       </span>
                     ))}
                   </div>
-                  {project.link && (
-                    <a
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-accent hover:text-accentLight transition-colors inline-flex items-center"
-                    >
-                      View Project <Github className="w-4 h-4 ml-1" />
-                    </a>
-                  )}
-                  {project.doi && (
-                    <a
-                      href={`https://doi.org/${project.doi}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-accent hover:text-accentLight transition-colors inline-flex items-center"
-                    >
-                      View Publication <Book className="w-4 h-4 ml-1" />
-                    </a>
-                  )}
+                  <div className="flex flex-wrap gap-2">
+                    {(project.link || project.links?.go || project.links?.python || project.links?.overthewire || project.links?.hackthebox) && (
+                      <div className="flex flex-wrap gap-2">
+                        {project.link && (
+                          <a
+                            href={project.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-accent hover:text-accentLight transition-colors inline-flex items-center"
+                          >
+                            View Project <Github className="w-4 h-4 ml-1" />
+                          </a>
+                        )}
+                        {project.links?.go && (
+                          <a
+                            href={project.links.go}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-accent hover:text-accentLight transition-colors inline-flex items-center"
+                          >
+                            View Project <Github className="w-4 h-4 ml-1" />
+                          </a>
+                        )}
+                        {project.links?.python && (
+                          <a
+                            href={project.links.python}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-accent hover:text-accentLight transition-colors inline-flex items-center"
+                          >
+                            View Project <Github className="w-4 h-4 ml-1" />
+                          </a>
+                        )}
+                        {project.links?.overthewire && (
+                          <a
+                            href={project.links.overthewire}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-accent hover:text-accentLight transition-colors inline-flex items-center"
+                          >
+                            View Project <Github className="w-4 h-4 ml-1" />
+                          </a>
+                        )}
+                        {project.links?.hackthebox && (
+                          <a
+                            href={project.links.hackthebox}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-accent hover:text-accentLight transition-colors inline-flex items-center"
+                          >
+                            View Project <Github className="w-4 h-4 ml-1" />
+                          </a>
+                        )}
+                      </div>
+                    )}
+                    {project.doi && (
+                      <a
+                        href={`https://doi.org/${project.doi}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-accent hover:text-accentLight transition-colors inline-flex items-center"
+                      >
+                        View Publication <Book className="w-4 h-4 ml-1" />
+                      </a>
+                    )}
+                  </div>
                 </div>
               </div>
             ))}
