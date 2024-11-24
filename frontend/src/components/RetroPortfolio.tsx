@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Github, Mail, FileText, Book, ArrowRight } from 'lucide-react'
+import { Github, Mail, FileText, Book } from 'lucide-react'
 
 export default function RetroPortfolio() {
   const [scrollPosition, setScrollPosition] = useState(0)
