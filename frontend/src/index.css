@@ -1,0 +1,124 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: monospace;
+  line-height: 1.5;
+  font-weight: 400;
+  font-size: 16px;
+
+  color-scheme: dark;
+  color: #cdd6f4;
+  background-color: #1e1e2e;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  user-select: text !important;
+  pointer-events: auto !important;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  width: 100%;
+  background: linear-gradient(
+    180deg,
+    #1e1e2e 0%,
+    #181825 100%
+  );
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.bg-gradient {
+  transition: background-position 0.3s ease-out;
+  background: linear-gradient(
+    135deg,
+    #1e1e2e 0%,
+    #181825 25%,
+    #11111b 50%,
+    #181825 75%,
+    #1e1e2e 100%
+  );
+  background-size: 400% 400%;
+}
+
+h1 {
+  font-size: 3.5rem !important;
+}
+
+h2 {
+  font-size: 2rem !important;
+}
+
+p {
+  font-size: 1.1rem !important;
+}
+
+.pointer-events-none {
+  pointer-events: none !important;
+}
+
+a, button, input, textarea {
+  pointer-events: auto !important;
+}
+
+p, h1, h2, h3, span, a {
+  user-select: text !important;
+}
+
+a {
+  font-weight: 500;
+  color: #89b4fa;
+  text-decoration: inherit;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: #b4befe;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #313244;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+button:hover {
+  border-color: #89b4fa;
+  background-color: #45475a;
+}
+
+button:focus,
+button:focus-visible {
+  outline: 2px solid #89b4fa;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
