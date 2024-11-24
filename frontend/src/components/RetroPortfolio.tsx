@@ -24,7 +24,7 @@ export default function RetroPortfolio() {
     <div className="flex justify-center min-h-screen w-full bg-transparent text-text font-mono">
       {/* Gradient background */}
       <div 
-        className="fixed inset-0 pointer-events-none bg-gradient"
+        className="fixed inset-0 pointer-events-none bg-gradient -z-10"
         style={{ backgroundPosition: `0 ${scrollPosition}%` }}
       ></div>
 
