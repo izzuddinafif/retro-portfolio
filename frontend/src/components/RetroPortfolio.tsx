@@ -34,7 +34,7 @@ export default function RetroPortfolio() {
         }}
       ></div>
 
-      <div className="w-full max-w-4xl px-4 py-8">
+      <div className="w-full max-w-6xl px-4 py-8">
         <header className="text-center mb-12">
           <section className="bg-surface p-4 sm:p-8 rounded-lg">
             <div className="flex flex-col items-center">
