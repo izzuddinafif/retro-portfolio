@@ -172,18 +172,18 @@ export default function Projects() {
           <div className="timeline">
             {projects.map((project, _) => (
               <div key={project.id} className="timeline-item">
-                <span className="text-sm text-accent mb-1 block">{project.date}</span>
-                <div className="bg-surfaceHover p-6 rounded-lg">
+                <span className="text-xs sm:text-sm text-accent mb-1 block">{project.date}</span>
+                <div className="bg-surfaceHover p-4 sm:p-6 rounded-lg">
                   <div className="flex flex-wrap gap-2 mb-2">
                     {project.types.map((type, typeIndex) => (
-                      <span key={typeIndex} className="text-base bg-surface px-2 py-1 rounded inline-block">{type}</span>
+                      <span key={typeIndex} className="text-xs sm:text-base bg-surface px-2 py-1 rounded inline-block">{type}</span>
                     ))}
                   </div>
-                  <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-                  <p className="text-base mb-4" dangerouslySetInnerHTML={{ __html: project.description }}></p>
+                  <h3 className="text-base sm:text-xl font-bold mb-2">{project.title}</h3>
+                  <div className="text-xs sm:text-base mb-4" dangerouslySetInnerHTML={{ __html: project.description }}></div>
                   <div className="flex flex-wrap gap-2 mb-4">
                     {project.technologies.map((tech, techIndex) => (
-                      <span key={techIndex} className="text-base bg-surface px-2 py-1 rounded">
+                      <span key={techIndex} className="text-xs sm:text-base bg-surface px-2 py-1 rounded">
                         {tech}
                       </span>
                     ))}
@@ -196,9 +196,9 @@ export default function Projects() {
                             href={project.link}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-accent hover:text-accentLight transition-colors inline-flex items-center"
+                            className="text-accent hover:text-accentLight transition-colors inline-flex items-center text-xs sm:text-base"
                           >
-                            View Project <Github className="w-4 h-4 ml-1" />
+                            View {project.title} <Github className="w-3 h-3 sm:w-4 sm:h-4 ml-1" />
                           </a>
                         )}
                         {project.links?.go && (
@@ -206,9 +206,9 @@ export default function Projects() {
                             href={project.links.go}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-accent hover:text-accentLight transition-colors inline-flex items-center"
+                            className="text-accent hover:text-accentLight transition-colors inline-flex items-center text-xs sm:text-base"
                           >
-                            View Project <Github className="w-4 h-4 ml-1" />
+                            View {project.title} (Go) <Github className="w-3 h-3 sm:w-4 sm:h-4 ml-1" />
                           </a>
                         )}
                         {project.links?.python && (
@@ -216,9 +216,9 @@ export default function Projects() {
                             href={project.links.python}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-accent hover:text-accentLight transition-colors inline-flex items-center"
+                            className="text-accent hover:text-accentLight transition-colors inline-flex items-center text-xs sm:text-base"
                           >
-                            View Project <Github className="w-4 h-4 ml-1" />
+                            View {project.title} (Python) <Github className="w-3 h-3 sm:w-4 sm:h-4 ml-1" />
                           </a>
                         )}
                         {project.links?.overthewire && (
@@ -226,9 +226,9 @@ export default function Projects() {
                             href={project.links.overthewire}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-accent hover:text-accentLight transition-colors inline-flex items-center"
+                            className="text-accent hover:text-accentLight transition-colors inline-flex items-center text-xs sm:text-base"
                           >
-                            View Project <Github className="w-4 h-4 ml-1" />
+                            View {project.title} <Github className="w-3 h-3 sm:w-4 sm:h-4 ml-1" />
                           </a>
                         )}
                         {project.links?.hackthebox && (
@@ -236,9 +236,9 @@ export default function Projects() {
                             href={project.links.hackthebox}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-accent hover:text-accentLight transition-colors inline-flex items-center"
+                            className="text-accent hover:text-accentLight transition-colors inline-flex items-center text-xs sm:text-base"
                           >
-                            View Project <Github className="w-4 h-4 ml-1" />
+                            View {project.title} <Github className="w-3 h-3 sm:w-4 sm:h-4 ml-1" />
                           </a>
                         )}
                       </div>
@@ -248,9 +248,9 @@ export default function Projects() {
                         href={`https://doi.org/${project.doi}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-accent hover:text-accentLight transition-colors inline-flex items-center"
+                        className="text-accent hover:text-accentLight transition-colors inline-flex items-center text-xs sm:text-base"
                       >
-                        View Publication <Book className="w-4 h-4 ml-1" />
+                        View {project.title} <Book className="w-3 h-3 sm:w-4 sm:h-4 ml-1" />
                       </a>
                     )}
                   </div>
