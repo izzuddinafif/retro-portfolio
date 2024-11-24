@@ -110,6 +110,14 @@ button:focus-visible {
   outline: 2px solid #89b4fa;
 }
 
+.pixelated {
+  font-family: monospace;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.2);
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { Github, Mail, Linkedin, FileText, Book } from 'lucide-react'
-import Projects from './Projects'
 
 export default function RetroPortfolio() {
   const [scrollPosition, setScrollPosition] = useState(0)
@@ -196,8 +195,6 @@ export default function RetroPortfolio() {
                 </div>
               </div>
             </section>
-
-            <Projects />
           </main>
 
           <footer className="text-center mt-12 mb-8">
