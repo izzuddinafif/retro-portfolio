@@ -13,7 +13,7 @@ export interface Project {
   date: string;
   description: string;
   technologies: string[];
-  type: string;
+  types: string[];
   link?: string;
   doi?: string;
   links?: Links;
