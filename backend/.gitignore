@@ -28,3 +28,4 @@ go.work
 
 # Binary output directories
 bin/
+build/
