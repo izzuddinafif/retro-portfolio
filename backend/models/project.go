@@ -16,8 +16,8 @@ type Project struct {
 	Description  string    `json:"description"`
 	Technologies []string  `json:"technologies"`
 	Types        []string  `json:"types"`
-	Link         string    `json:"link,omitempty"`
-	DOI          string    `json:"doi,omitempty"`
+	Link         *string   `json:"link,omitempty"`
+	DOI          *string   `json:"doi,omitempty"`
 	Links        Links     `json:"links,omitempty"`
 	CreatedAt    time.Time `json:"created_at"`
 }

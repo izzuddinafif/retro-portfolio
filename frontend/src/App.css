@@ -43,3 +43,42 @@
 .read-the-docs {
   color: #888;
 }
+
+/* Timeline styling */
+.timeline {
+  position: relative;
+  padding-left: 3rem;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #646cff;
+  opacity: 0.5;
+}
+
+.timeline-item {
+  position: relative;
+  padding-bottom: 2rem;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -3rem;
+  top: 1.5rem;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #646cff;
+  transform: translateX(-5px);
+}
+
+/* Ensure cards don't overlap the timeline on hover */
+.timeline-item > div {
+  margin-left: 1rem;
+}

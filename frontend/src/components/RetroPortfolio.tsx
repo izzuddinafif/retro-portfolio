@@ -73,7 +73,7 @@ export default function RetroPortfolio() {
         <header className="text-center mb-12">
           <section className="bg-surface p-4 sm:p-8 rounded-lg">
             <div className="flex flex-col items-center">
-              <div className="w-24 sm:w-32 md:w-48 h-24 sm:h-32 md:h-48 mb-4 sm:mb-6 md:mb-8 rounded-full overflow-hidden transform transition-transform hover:scale-105">
+              <div className="w-24 sm:w-32 md:w-48 h-24 sm:h-32 md:h-48 mb-6 rounded-full overflow-hidden transform transition-transform hover:scale-105">
                 <img 
                   src="/me.jpeg" 
                   alt="Izzuddin Ahmad Afif" 
@@ -81,8 +81,8 @@ export default function RetroPortfolio() {
                   loading="lazy"
                 />
               </div>
-              <h1 className="pixelated text-lg sm:text-xl md:text-2xl mb-4 sm:mb-6 md:mb-8 tracking-normal sm:tracking-[-50em] text-accent">Izzuddin Ahmad Afif</h1>
-              <p className="text-xs sm:text-sm md:text-base mb-3 sm:mb-4 md:mb-6 text-textLight">Internet Engineering Student & Cybersecurity Enthusiast</p>
+              <h1 className="pixelated text-lg sm:text-xl md:text-2xl mb-6 tracking-normal sm:tracking-[-50em] text-accent">Izzuddin Ahmad Afif</h1>
+              <p className="text-xs sm:text-sm md:text-base mb-6 text-textLight">Internet Engineering Student & Cybersecurity Enthusiast</p>
               <div className="flex justify-center space-x-2 sm:space-x-3 md:space-x-4">
                 <a
                   href="https://github.com/izzuddinafif"
@@ -135,7 +135,7 @@ export default function RetroPortfolio() {
 
         <main className="w-full">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <section className="bg-surface p-8 rounded-lg mb-12">
+            <section className="bg-surface p-8 rounded-lg">
               <h2 className="pixelated text-lg sm:text-xl mb-8 text-center">ABOUT ME</h2>
               <div className="text-left">
                 <p className="text-sm sm:text-base leading-relaxed mb-6">
@@ -156,7 +156,7 @@ export default function RetroPortfolio() {
               </div>
             </section>
 
-            <section className="bg-surface p-8 rounded-lg mb-12">
+            <section className="bg-surface p-8 rounded-lg">
               <h2 className="pixelated text-lg sm:text-xl mb-8 text-center">SKILLS</h2>
               <div className="text-left">
                 <div className="grid grid-cols-2 gap-4">
@@ -183,7 +183,7 @@ export default function RetroPortfolio() {
             </section>
           </div>
 
-          <section className="bg-surface p-8 rounded-lg mt-2">
+          <section className="bg-surface p-8 rounded-lg mt-6">
             <h2 className="pixelated text-lg sm:text-xl mb-8 text-center">FEATURED WORKS</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {projects.map((project, index) => (

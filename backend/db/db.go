@@ -68,7 +68,7 @@ func PopulateDB() error {
 			Description:  "A retro-themed portfolio website built with React and Go, featuring a PostgreSQL backend.",
 			Technologies: []string{"React", "TypeScript", "Go", "PostgreSQL", "Docker"},
 			Types:        []string{"Web Development"}, // Update this field to match the new schema
-			Link:         "https://github.com/izzuddinafif/retro-portfolio",
+			Link:         &[]string{"https://github.com/izzuddinafif/retro-portfolio"}[0], // Convert to pointer
 		},
 		// Add more projects as needed
 	}
@@ -94,7 +94,7 @@ func PopulateDB() error {
 			VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
 			ON CONFLICT (id) DO NOTHING`,
 			project.Title, project.Date, project.Description, techJSON, typesJSON, // Update this field to match the new schema
-			project.Link, project.DOI, linksJSON)
+			*project.Link, project.DOI, linksJSON)
 
 		if err != nil {
 			return fmt.Errorf("error inserting project: %v", err)
