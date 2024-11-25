@@ -6,6 +6,8 @@
 *.dylib
 *.sql
 .env
+*.sh
+*.bat
 
 # Test binary, built with `go test -c`
 *.test
