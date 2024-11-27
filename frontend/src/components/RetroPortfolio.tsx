@@ -145,7 +145,7 @@ export default function RetroPortfolio() {
               </div>
               <div className="text-center mt-6">
                 <a
-                  href="/resume.pdf"
+                  href="/cv.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center px-6 py-3 bg-surfaceHover hover:bg-accent/20 rounded-lg transition-colors hover-pop"
