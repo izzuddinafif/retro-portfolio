@@ -38,3 +38,4 @@ ehthumbs.db
 Thumbs.db.env*
 *.sh
 *.bat
+frontend/tsconfig.app.tsbuildinfo
