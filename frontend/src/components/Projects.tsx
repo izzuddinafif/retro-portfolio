@@ -170,8 +170,12 @@ export default function Projects() {
 
         <main>
           <div className="timeline">
-            {projects.map((project, _) => (
-              <div key={project.id} className="timeline-item">
+            {projects.map((project, index) => (
+              <div 
+                key={project.id} 
+                className="timeline-item"
+                style={{ '--section-index': index } as React.CSSProperties}
+              >
                 <span className="text-xs sm:text-sm text-accent mb-1 block">{project.date}</span>
                 <div className="bg-surfaceHover p-4 sm:p-6 rounded-lg transform transition-all duration-300 hover:scale-[1.02] hover:shadow-lg">
                   <div className="flex flex-wrap gap-2 mb-2">

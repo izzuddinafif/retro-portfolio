@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Github, Mail, FileText, Book } from 'lucide-react'
+import { Github, Mail, FileText, Book, Globe } from 'lucide-react'
 
 export default function RetroPortfolio() {
   const [scrollPosition, setScrollPosition] = useState(0)
@@ -25,6 +25,14 @@ export default function RetroPortfolio() {
   }
 
   const projects = [
+    {
+      title: 'MATLAB-GA-PSO',
+      description: 'Developed a hybrid optimization algorithm combining Genetic Algorithm (GA) and Particle Swarm Optimization (PSO) in MATLAB, designed to optimize parameters for complex systems.',
+      types: ['Project'],
+      technologies: ['MATLAB', 'optimization algorithms', 'genetic algorithm', 'particle swarm optimization'],
+      link: 'https://github.com/izzuddinafif/MATLAB-GA-PSO',
+      icon: <Github className="w-4 h-4 ml-1.5 transition-transform group-hover:translate-x-0.5" />
+    },
     {
       title: 'Design of Corrugated Road Detection System',
       description: 'Developed a system to detect and map corrugated road conditions using LoRa technology, GPS data, and webGIS. Achieved low transmission delay and high GPS accuracy to enhance road safety.',
@@ -56,6 +64,14 @@ export default function RetroPortfolio() {
       technologies: ['Python', 'Machine Learning', 'Scikit-Learn'],
       link: 'https://github.com/izzuddinafif',
       icon: <Github className="w-4 h-4 ml-1.5 transition-transform group-hover:translate-x-0.5" />,
+    },
+    {
+      title: 'Hyperledger Fabric-based Zakat Management System',
+      description: 'Developed a Hyperledger Fabric blockchain network and implemented Zakat smart contracts in Go for managing Zakat transactions as a final project for graduation. Created comprehensive validation rules, multi-organization support (YDSF Malang, YDSF Jatim), and developed network deployment tools for testing and development environments.',
+      types: ['Project', 'Academic'],
+      technologies: ['Go', 'Hyperledger Fabric', 'Blockchain', 'Docker', 'Smart Contracts'],
+      link: 'https://github.com/izzuddinafif/fabric-zakat',
+      icon: <Github className="w-4 h-4 ml-1.5 transition-transform group-hover:translate-x-0.5" />
     },
   ]
 
@@ -153,6 +169,15 @@ export default function RetroPortfolio() {
                   <span className="text-base mr-2">View Resume</span>
                   <FileText className="w-5 h-5" />
                 </a>
+                <a
+                  href="https://ctftime.org/user/151316"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center px-6 py-3 ml-4 bg-surfaceHover hover:bg-accent/20 rounded-lg transition-colors hover-pop"
+                >
+                  <span className="text-base mr-2">CTFtime Profile</span>
+                  <Globe className="w-5 h-5" />
+                </a>
               </div>
             </section>
 
@@ -211,8 +236,8 @@ export default function RetroPortfolio() {
                     rel="noopener noreferrer"
                     className="text-accent hover:text-accentLight transition-all duration-300 inline-flex items-center group"
                   >
-                    View {project.title} {project.icon}
-                  </a>
+                    View {project.title} <span className="w-4 h-4 ml-1.5 transition-transform group-hover:translate-x-0.5">{project.icon}</span>
+                    </a>
                 </div>
               ))}
             </div>

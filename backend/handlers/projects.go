@@ -27,13 +27,15 @@ func GetProjects(c *gin.Context) {
 	for rows.Next() {
 		var p models.Project
 		var techJSON, typesJSON, linksJSON []byte
-		var link, doi sql.NullString
+		var link, doi sql.NullString // Using sql.NullString for nullable fields
+
 		err := rows.Scan(&p.ID, &p.Title, &p.Date, &p.Description, &techJSON, &typesJSON, &link, &doi, &linksJSON, &p.CreatedAt)
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 			return
 		}
 
+		// Handle nullable strings
 		if link.Valid {
 			p.Link = &link.String
 		}
@@ -41,24 +43,25 @@ func GetProjects(c *gin.Context) {
 			p.DOI = &doi.String
 		}
 
-		err = json.Unmarshal(techJSON, &p.Technologies)
-		if err != nil {
+		// Unmarshal JSON arrays
+		if err := json.Unmarshal(techJSON, &p.Technologies); err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 			return
 		}
 
-		err = json.Unmarshal(typesJSON, &p.Types)
-		if err != nil {
+		if err := json.Unmarshal(typesJSON, &p.Types); err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 			return
 		}
 
+		// Handle nullable Links object
 		if linksJSON != nil {
-			err = json.Unmarshal(linksJSON, &p.Links)
-			if err != nil {
+			var links models.Links
+			if err := json.Unmarshal(linksJSON, &links); err != nil {
 				c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 				return
 			}
+			p.Links = links
 		}
 
 		projects = append(projects, p)
@@ -77,17 +80,23 @@ func GetProject(c *gin.Context) {
 
 	var p models.Project
 	var techJSON, typesJSON, linksJSON []byte
-	var link, doi sql.NullString
+	var link, doi sql.NullString // Using sql.NullString for nullable fields
+
 	err = db.DB.QueryRow(`
 		SELECT id, title, date, description, technologies, types, link, doi, links, created_at
 		FROM projects WHERE id = $1`,
 		projectID).Scan(&p.ID, &p.Title, &p.Date, &p.Description, &techJSON, &typesJSON, &link, &doi, &linksJSON, &p.CreatedAt)
 
 	if err != nil {
-		c.JSON(http.StatusNotFound, gin.H{"error": "Project not found"})
+		if err == sql.ErrNoRows {
+			c.JSON(http.StatusNotFound, gin.H{"error": "Project not found"})
+		} else {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		}
 		return
 	}
 
+	// Handle nullable strings
 	if link.Valid {
 		p.Link = &link.String
 	}
@@ -95,24 +104,25 @@ func GetProject(c *gin.Context) {
 		p.DOI = &doi.String
 	}
 
-	err = json.Unmarshal(techJSON, &p.Technologies)
-	if err != nil {
+	// Unmarshal JSON arrays
+	if err := json.Unmarshal(techJSON, &p.Technologies); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}
 
-	err = json.Unmarshal(typesJSON, &p.Types)
-	if err != nil {
+	if err := json.Unmarshal(typesJSON, &p.Types); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}
 
+	// Handle nullable Links object
 	if linksJSON != nil {
-		err = json.Unmarshal(linksJSON, &p.Links)
-		if err != nil {
+		var links models.Links
+		if err := json.Unmarshal(linksJSON, &links); err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 			return
 		}
+		p.Links = links
 	}
 
 	c.JSON(http.StatusOK, p)
