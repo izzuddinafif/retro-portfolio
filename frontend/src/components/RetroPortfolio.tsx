@@ -145,7 +145,7 @@ export default function RetroPortfolio() {
               </div>
               <div className="text-center mt-6">
                 <a
-                  href="/cv.pdf"
+                  href="/resume.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center px-6 py-3 bg-surfaceHover hover:bg-accent/20 rounded-lg transition-colors hover-pop"
@@ -166,6 +166,7 @@ export default function RetroPortfolio() {
                       <li>Go</li>
                       <li>Python</li>
                       <li>C</li>
+		      <li>x86 Assembly</li>
                       <li>Bash Script</li>
                     </ul>
                   </div>
@@ -173,7 +174,7 @@ export default function RetroPortfolio() {
                     <h3 className="text-accent mb-2">Technologies</h3>
                     <ul className="list-disc list-inside space-y-1">
                       <li>Hyperledger Fabric</li>
-                      <li>Laravel</li>
+                      <li>Git</li>
                       <li>Docker</li>
                       <li>Linux</li>
                     </ul>
