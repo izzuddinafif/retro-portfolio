@@ -159,6 +159,7 @@ export default function RetroPortfolio() {
                 </p>
                 
               </div>
+            
               <div className="text-center mt-6">
                 <a
                   href="/resume.pdf"
@@ -179,7 +180,7 @@ export default function RetroPortfolio() {
                   <Globe className="w-5 h-5" />
                 </a>
               </div>
-            </section>
+	    </section>
 
             <section className="bg-surface p-8 rounded-lg">
               <h2 className="pixelated text-lg sm:text-xl mb-8 text-center">SKILLS</h2>
