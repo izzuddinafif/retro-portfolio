@@ -39,3 +39,4 @@ Thumbs.db.env*
 *.sh
 *.bat
 frontend/tsconfig.app.tsbuildinfo
+node_modules
