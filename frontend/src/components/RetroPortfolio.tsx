@@ -174,7 +174,7 @@ export default function RetroPortfolio() {
                   href="https://ctftime.org/user/151316"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center px-6 py-3 ml-4 bg-surfaceHover hover:bg-accent/20 rounded-lg transition-colors hover-pop"
+                  className="inline-flex items-center px-6 py-3 bg-surfaceHover hover:bg-accent/20 rounded-lg transition-colors hover-pop"
                 >
                   <span className="text-base mr-2">CTFtime Profile</span>
                   <Globe className="w-5 h-5" />
